@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erp-assistencia/schemas/",
+  "title": "ProductInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sku",
+    "name",
+    "category",
+    "product_type",
+    "unit_of_measure"
+  ],
+  "properties": {
+    "sku": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[A-Za-z0-9._/-]+$"
+    },
+    "barcode": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 80
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 180
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 5000
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "part",
+        "consumable",
+        "resale",
+        "tool"
+      ]
+    },
+    "unit_of_measure": {
+      "type": "string",
+      "enum": [
+        "unit",
+        "meter",
+        "gram",
+        "milliliter",
+        "liter",
+        "pack"
+      ]
+    },
+    "compatible_equipment_categories": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "cell_phone",
+          "tablet",
+          "notebook",
+          "desktop_pc",
+          "drone",
+          "rc_toy",
+          "electric_bicycle",
+          "electric_scooter",
+          "electric_vehicle",
+          "battery_pack",
+          "battery_charger",
+          "electronic_board",
+          "solar_inverter",
+          "frequency_inverter",
+          "air_conditioner_inverter",
+          "industrial_equipment",
+          "audio_equipment",
+          "power_supply",
+          "other"
+        ]
+      }
+    },
+    "brand": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "manufacturer_part_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "cost_price_cents": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "sale_price_cents": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minimum_stock": {
+      "type": "number",
+      "minimum": 0
+    },
+    "maximum_stock": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "track_serial_number": {
+      "type": "boolean",
+      "default": false
+    },
+    "track_batch": {
+      "type": "boolean",
+      "default": false
+    },
+    "track_expiration": {
+      "type": "boolean",
+      "default": false
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

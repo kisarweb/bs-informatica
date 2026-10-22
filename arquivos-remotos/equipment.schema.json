@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erp-assistencia/schemas/",
+  "title": "EquipmentInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customer_id",
+    "category"
+  ],
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "cell_phone",
+        "tablet",
+        "notebook",
+        "desktop_pc",
+        "drone",
+        "rc_toy",
+        "electric_bicycle",
+        "electric_scooter",
+        "electric_vehicle",
+        "battery_pack",
+        "battery_charger",
+        "electronic_board",
+        "solar_inverter",
+        "frequency_inverter",
+        "air_conditioner_inverter",
+        "industrial_equipment",
+        "audio_equipment",
+        "power_supply",
+        "other"
+      ]
+    },
+    "manufacturer": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 120
+    },
+    "serial_number": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 160
+    },
+    "imei": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 32
+    },
+    "asset_tag": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 80
+    },
+    "color": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 60
+    },
+    "purchase_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "warranty_expiry": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "technical_specifications": {
+      "type": "object",
+      "default": {}
+    },
+    "accessories_received": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      },
+      "maxItems": 50
+    },
+    "physical_condition": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 4000
+    }
+  }
+}

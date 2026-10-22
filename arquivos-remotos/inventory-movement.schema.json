@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erp-assistencia/schemas/",
+  "title": "InventoryMovementCommand",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product_id",
+    "location_id",
+    "movement_type",
+    "quantity",
+    "source_type",
+    "idempotency_key"
+  ],
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "location_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "movement_type": {
+      "type": "string",
+      "enum": [
+        "purchase",
+        "service_consumption",
+        "sale",
+        "customer_return",
+        "supplier_return",
+        "adjustment_in",
+        "adjustment_out",
+        "transfer_in",
+        "transfer_out",
+        "loss",
+        "reservation",
+        "reservation_release"
+      ]
+    },
+    "quantity": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "unit_cost_cents": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "purchase",
+        "sale",
+        "service_order",
+        "adjustment",
+        "transfer"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "reason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 1000
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    }
+  },
+  "$comment": "Este schema valida a forma do comando. A permissão, disponibilidade, sinal do movimento, saldo e gravação atômica devem ser verificados no backend."
+}

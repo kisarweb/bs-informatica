@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erp-assistencia/schemas/",
+  "title": "CustomerInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customer_type",
+    "name",
+    "phone"
+  ],
+  "properties": {
+    "customer_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "business"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 180
+    },
+    "trade_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 180
+    },
+    "tax_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9./-]{11,18}$"
+    },
+    "email": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "email",
+      "maxLength": 254
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 25
+    },
+    "whatsapp": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 25
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/address"
+      },
+      "maxItems": 10
+    },
+    "preferred_contact_method": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "phone",
+        "whatsapp",
+        "email",
+        "in_person",
+        null
+      ]
+    },
+    "marketing_consent": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 5000
+    }
+  },
+  "$defs": {
+    "address": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "street",
+        "number",
+        "neighborhood",
+        "city",
+        "state",
+        "postal_code"
+      ],
+      "properties": {
+        "street": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 180
+        },
+        "number": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "complement": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        },
+        "neighborhood": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "postal_code": {
+          "type": "string",
+          "pattern": "^[0-9]{5}-?[0-9]{3}$"
+        },
+        "country": {
+          "type": "string",
+          "const": "BR",
+          "default": "BR"
+        }
+      }
+    }
+  }
+}

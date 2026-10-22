@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/erp-assistencia/schemas/",
+  "title": "ServiceOrderCreateInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "customer_id",
+    "equipment_id",
+    "reported_problem"
+  ],
+  "properties": {
+    "customer_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "equipment_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "appointment_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "assigned_technician_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "normal",
+        "high",
+        "urgent"
+      ],
+      "default": "normal"
+    },
+    "reported_problem": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 5000
+    },
+    "initial_condition": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 5000
+    },
+    "accessories_received": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 120
+      },
+      "maxItems": 50
+    },
+    "promised_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "customer_notes": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 5000
+    }
+  },
+  "$comment": "O backend deve validar que equipment_id pertence a customer_id e à empresa da sessão. Não aceitar company_id, status, order_number ou totais enviados pelo cliente."
+}
